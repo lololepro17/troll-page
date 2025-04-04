@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>CyberShield - Analyse de sécurité</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0b1c2c;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    header {
+      background-color: #122d44;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    #logo {
+      height: 40px;
+    }
+
+    main {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    #startScan {
+      background-color: #00e676;
+      color: #000;
+      font-weight: bold;
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 2rem;
+    }
+
+    #console {
+      background: #000;
+      color: #0f0;
+      text-align: left;
+      margin: 2rem auto;
+      padding: 1rem;
+      max-width: 700px;
+      height: 300px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      display: none;
+      border-radius: 8px;
+    }
+
+    #annuler {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      background-color: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+      display: none;
+    }
+
+    #telecharger {
+      display: none;
+      background-color: #2979ff;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img id="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Security_icon.svg/1024px-Security_icon.svg.png" alt="CyberShield">
+  <h1>CyberShield - Analyse antivirus en ligne</h1>
+</header>
+
+<main>
+  <h2>Votre système est vulnérable. Lancez une analyse complète maintenant.</h2>
+  <button id="startScan">Lancer l’analyse</button>
+</main>
+
+<div id="console"></div>
+<button id="annuler">ANNULER</button>
+<button id="telecharger">🛡 Télécharger notre outil</button>
+
+<script>
+  const startBtn = document.getElementById('startScan');
+  const consoleDiv = document.getElementById('console');
+  const btnAnnuler = document.getElementById('annuler');
+  const btnDownload = document.getElementById('telecharger');
+
+  startBtn.addEventListener('click', () => {
+    startBtn.style.display = 'none';
+    consoleDiv.style.display = 'block';
+    btnAnnuler.style.display = 'block';
+    btnDownload.style.display = 'block';
+
+    const lignes = [
+      "[INFO] Analyse du disque dur...",
+      "[ALERTE] Virus détecté : Trojan.Clicker.1000",
+      "[ALERTE] Worm.AutoRun.Gen trouvé sur C:\\Windows\\System32",
+      "[INFO] Suppression des fichiers système...",
+      "[ERREUR] Formatage en cours...",
+      "[INFO] RAM effacée.",
+      "[INFO] Suppression des journaux de sécurité...",
+      "[ERREUR] Le système est instable.",
+      "[ERREUR] Erreurs critiques détectées : 999"
+    ];
+
+    let i = 0;
+    function afficherLigne() {
+      if (i < lignes.length) {
+        consoleDiv.textContent += lignes[i] + "\n";
+        consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        i++;
+        setTimeout(afficherLigne, 1000);
+      }
+    }
+    afficherLigne();
+
+    btnAnnuler.addEventListener('mouseover', () => {
+      const x = Math.random() * (window.innerWidth - btnAnnuler.offsetWidth);
+      const y = Math.random() * (window.innerHeight - btnAnnuler.offsetHeight);
+      btnAnnuler.style.left = x + 'px';
+      btnAnnuler.style.top = y + 'px';
+    });
+  });
+
+  btnDownload.addEventListener('click', () => {
+    alert("Téléchargement de CyberShield_Analyseur.exe...");
+    // window.location.href = 'https://tonsite.com/fichier.exe'; // optionnel
+  });
+</script>
+
+</body>
+</html>
